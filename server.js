@@ -1,31 +1,25 @@
 const express = require('express');
-const router = require('express').Router();
+const routes = require('./routes');
+const apiRoute = require("./api.js");
+const db = require('./db/db.json');
 
 const path = require('path');
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 3000;
 const app = express();
-// const api = require('./public/js/index.js');
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use('/api', api);
-
-
-
-
-router.get('/notes', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/notes.html'));
-});
-  
-router.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/index.html'));
-});
-
 app.use(express.static(path.join(__dirname, 'public')));
+app.use("/", routes);
+app.use('/api', apiRoute);
+
+
+ 
 
 app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
-  });
+  console.log(`Server running on port ${port}`);
+});
 
-  
-  module.exports = router;
+   
+// module.exports = router;
