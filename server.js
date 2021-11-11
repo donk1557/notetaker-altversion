@@ -4,7 +4,7 @@ const apiRoute = require("./api.js");
 const db = require('./db/db.json');
 
 const path = require('path');
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 const app = express();
 
 
